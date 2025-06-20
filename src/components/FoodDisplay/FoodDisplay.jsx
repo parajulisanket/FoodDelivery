@@ -18,9 +18,11 @@ const FoodDisplay = ({ category }) => {
                 name={item.name}
                 price={item.price}
                 description={item.description}
-                image={item.image}></FoodItem>
+                image={item.image}
+              />
             );
           }
+          return null;
         })}
       </div>
     </div>

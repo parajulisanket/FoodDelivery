@@ -7,7 +7,7 @@ const Cart = () => {
   const { cartItems, food_list, removeFromCart, getTotalCartAmount } =
     useContext(StoreContext);
   const navigate = useNavigate();
-  useContext(StoreContext);
+
   return (
     <div className="cart">
       <div className="cart-items">
@@ -19,14 +19,14 @@ const Cart = () => {
           <p>Total</p>
           <p>Remove</p>
         </div>
-        <br></br>
-        <hr></hr>
+        <br />
+        <hr />
         {food_list.map((item, index) => {
           if (cartItems[item._id] > 0) {
             return (
-              <div>
+              <div key={item._id}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={item.image} alt="" />
+                  <img src={item.image} alt={item.name} />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>
@@ -35,10 +35,11 @@ const Cart = () => {
                     X
                   </p>
                 </div>
-                <hr></hr>
+                <hr />
               </div>
             );
           }
+          return null; // Ensures every map callback returns something
         })}
       </div>
       <div className="cart-bottom">
@@ -63,7 +64,7 @@ const Cart = () => {
             </div>
           </div>
           <button onClick={() => navigate("/placeorder")}>
-            PROCCED TO CHECKOUT
+            PROCEED TO CHECKOUT
           </button>
         </div>
         <div className="cart-promocode">
